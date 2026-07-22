@@ -1,0 +1,48 @@
+services:
+
+  backend:
+    build:
+      context: ./backend
+
+    container_name: painting_backend
+
+    command: python manage.py runserver 0.0.0.0:8000
+
+    volumes:
+      - ./backend:/app
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      POSTGRES_DB: painting_db
+      POSTGRES_USER: painting_user
+      POSTGRES_PASSWORD: painting_password
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+
+    depends_on:
+      - postgres
+
+
+  postgres:
+    image: postgres:16
+
+    container_name: painting_postgres
+
+    restart: always
+
+    environment:
+      POSTGRES_DB: painting_db
+      POSTGRES_USER: painting_user
+      POSTGRES_PASSWORD: painting_password
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+
+volumes:
+  postgres_data:
