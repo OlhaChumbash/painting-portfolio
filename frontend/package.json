@@ -1,23 +1,19 @@
 {
-  "name": "frontend",
+  "name": "developer-portfolio-starter-code",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "oxlint",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7"
-  },
-  "devDependencies": {
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.3",
-    "oxlint": "^1.71.0",
-    "vite": "^8.1.1"
+    "eslint": "8.36.0",
+    "eslint-config-next": "13.2.4",
+    "framer-motion": "^10.6.0",
+    "next": "15.5.15",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   }
 }
