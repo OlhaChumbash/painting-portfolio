@@ -1,0 +1,19 @@
+{
+  "name": "Painting Portfolio Dev",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "24"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+
+  "forwardPorts": [
+    8000,
+    3000,
+    5432
+  ],
+
+  "postCreateCommand": "python --version && node --version"
+}
