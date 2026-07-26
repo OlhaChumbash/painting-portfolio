@@ -6,7 +6,6 @@ import Layout from '@/components/Layout'
 const inter = Inter({ subsets: ['latin'] })
 import profilePic from "../../public/images/profile/profile-photo.png";
 import lightBulb from "../../public/images/svgs/miscellaneous_icons_1.svg";
-
 import AnimatedText from '@/components/AnimatedText'
 import { LinkArrow } from "@/components/Icons"
 import HireMe from '@/components/HireMe'
