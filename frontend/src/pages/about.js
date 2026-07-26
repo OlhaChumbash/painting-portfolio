@@ -3,6 +3,7 @@ import Head from 'next/head'
 import AnimatedText from '@/components/AnimatedText'
 import Skills from '@/components/Skills'
 import Experience from '@/components/Experience'
+import Education from '@/components/Education'
 import Layout from '@/components/Layout'
 import Image from 'next/image'
 import profilePic from "../../public/images/profile/developer-pic-2.jpg";
@@ -100,6 +101,7 @@ const about = () => {
                 </Layout>
                 <Skills />
                 <Experience />
+                <Education />
             </main>
         </>
     )
