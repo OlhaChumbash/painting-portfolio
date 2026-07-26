@@ -5,8 +5,11 @@ import styles from '@/styles/Home.module.css'
 import Layout from '@/components/Layout'
 const inter = Inter({ subsets: ['latin'] })
 import profilePic from "../../public/images/profile/profile-photo.png";
+import lightBulb from "../../public/images/svgs/miscellaneous_icons_1.svg";
 import AnimatedText from '@/components/AnimatedText'
-import { LinkArrow} from "@/components/Icons"
+import { LinkArrow } from "@/components/Icons"
+import HireMe from '@/components/HireMe'
+
 
 
 export default function Home() {
@@ -41,14 +44,14 @@ export default function Home() {
                   className="flex items-center bg-dark text-light p-2.5 px-6
                    rounded-lg text-lg font-semibold hover:bg-light hover:text-dark
                    border-2 border-solid border-transparent hover:border-dark"
-                    download={true}
+                  download={true}
                 >
-                  Resume <LinkArrow className={"w-6 ml-1"}/>
+                  Resume <LinkArrow className={"w-6 ml-1"} />
                 </a>
 
                 <a
                   href="mailto:olyachumbash@gmail.com"
-                   target='_blank'
+                  target='_blank'
                   className="ml-4 text-lg font-medium capitalize text-dark underline"
                 >
                   Contact
@@ -57,6 +60,10 @@ export default function Home() {
             </div>
           </div>
         </Layout>
+        <HireMe />
+        <div className="absolute right-8 bottom-8 inline-block w-24 ">
+          <Image src={lightBulb} alt="" className="w-full h-auto" />
+        </div>
       </main>
     </>
   )
