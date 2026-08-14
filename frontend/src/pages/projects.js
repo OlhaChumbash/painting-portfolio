@@ -4,8 +4,11 @@ import Layout from '@/components/Layout'
 import AnimatedText from '@/components/AnimatedText'
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { GithubIcon } from '@/components/Icons'
 import project1 from "../../public/images/projects/crypto-screener-cover-image.jpg";
+
+const FramerImage = motion(Image);
 
 const FeaturedProjects = ({ type, title, summary, img, link, github }) => {
     return (
@@ -18,10 +21,12 @@ const FeaturedProjects = ({ type, title, summary, img, link, github }) => {
             <Link href={link} target="_blank"
                 className="w-1/2 cursor-pointer overflow-hidden rounded-lg"
             >
-                <Image
+                <FramerImage
                     src={img}
                     alt={title}
                     className="w-full h-auto"
+                     whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
                 />
             </Link>
 
@@ -60,10 +65,12 @@ const Project = ({ title, type, img, link, github }) => {
             <Link href={link} target="_blank"
                 className="w-full cursor-pointer overflow-hidden rounded-lg"
             >
-                <Image
+                <FramerImage
                     src={img}
                     alt={title}
                     className="w-full h-auto"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
                 />
             </Link>
 
