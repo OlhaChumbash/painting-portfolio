@@ -4,13 +4,13 @@ import Link from 'next/link'
 
 const Footer = () => {
     return (
-        <footer className="w-full border-t-2 border-solid border-dark font-medium text-lg">
-            {/* Добавили w-full и явно указали flex-row */}
+        <footer className="w-full border-t-2 border-solid border-dark font-medium text-lg
+        dark:text-light dark:border-light">            
             <Layout className="py-8 flex flex-row items-center justify-between w-full">
                 <span>{new Date().getFullYear()} &copy; All Rights Reserved.</span>
                 
                 <div className="flex items-center">
-                    Build With <span className="text-primary text-2xl px-1">&#9825;</span> 
+                    Build With <span className="text-primary dark:text-primary-dark text-2xl px-1">&#9825;</span> 
                     by&nbsp;
                     <Link 
                         href="https://olhachumbash.github.io/portfolio/" 

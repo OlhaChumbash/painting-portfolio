@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 * {
   box-sizing: border-box;
 }
@@ -19,12 +21,10 @@ body {
   --animate-spin-slow: spin 8s linear infinite;
 }
 
-
-/* свои background классы */
 @layer utilities {
   .bg-circular-light {
     background-image: repeating-radial-gradient(
-      rgba(0,0,0,0.4) 2px,
+      rgba(0, 0, 0, 0.4) 2px,
       #f5f5f5 5px,
       #f5f5f5 100px
     );
@@ -32,25 +32,18 @@ body {
 
   .bg-circular-dark {
     background-image: repeating-radial-gradient(
-      rgba(255,255,255,0.5) 2px,
+      rgba(255, 255, 255, 0.5) 2px,
       #1b1b1b 8px,
       #1b1b1b 100px
     );
   }
 
-  .bg-circular-light-lg {
+  /* dark mode */
+  .dark .dark\:bg-circular-dark {
     background-image: repeating-radial-gradient(
-      rgba(0,0,0,0.4) 2px,
-      #f5f5f5 5px,
-      #f5f5f5 80px
-    );
-  }
-
-  .bg-circular-dark-lg {
-    background-image: repeating-radial-gradient(
-      rgba(255,255,255,0.5) 2px,
+      rgba(255, 255, 255, 0.5) 2px,
       #1b1b1b 8px,
-      #1b1b1b 80px
+      #1b1b1b 100px
     );
   }
 }
