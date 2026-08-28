@@ -9,6 +9,8 @@ import Image from 'next/image'
 import profilePic from "../../public/images/profile/developer-pic-2.jpg";
 import { useInView, useMotionValue, useSpring } from 'framer-motion'
 import { useRef, useEffect } from 'react'
+import TransitionEffect from '@/components/TransitionEffect'
+
 
 const AnimatedNumber = ({ value }) => {
     const ref = useRef(null);
@@ -46,6 +48,7 @@ const about = () => {
                 <title>Dmytro | About Page</title>
                 <meta name="description" content="Dmytro Shynienkov About Page" />
             </Head>
+            <TransitionEffect />
             <main className="flex w-full flex-col items-center justify-center dark:text-light">
                 <Layout className="pt-16">
                     <AnimatedText text="Passion Fuels Purpose!" className="mb-8 !text-4xl sm:mb-16 sm:!text-6xl lg:!text-7xl" />

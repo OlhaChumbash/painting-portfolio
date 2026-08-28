@@ -11,6 +11,7 @@ import article3 from "../../public/images/articles/form validation in reactjs us
 import article4 from "../../public/images/articles/smooth scrolling in reactjs.png";
 import article5 from "../../public/images/articles/What is higher order component in React.jpg";
 import article6 from "../../public/images/articles/What is Redux with easy explanation.png";
+import TransitionEffect from '@/components/TransitionEffect'
 
 const FramerImage = motion(Image);
 
@@ -107,7 +108,7 @@ const articles = () => {
                 <title>Dmytro | Articles Page</title>
                 <meta name="description" content="Dmytro Shynienkov Articles Page" />
             </Head>
-
+            <TransitionEffect />
             <main className="flex w-full mb-16 flex-col items-center justify-center overflow-hidden dark:text-light">
                 <Layout className="pt-16">
                     <AnimatedText text="Words Can Change The World!" className="mb-8 !text-4xl sm:mb-16 sm:!text-6xl lg:!text-7xl" />
