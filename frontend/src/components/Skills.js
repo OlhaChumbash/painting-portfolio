@@ -4,12 +4,13 @@ import { motion } from "framer-motion"
 const Skill = ({ name, x, y }) => {
     return (
         <motion.div
-            className="flex items-center justify-center rounded-full font-semibold bg-dark
-                     text-light py-3 px-6 shadow-dark cursor-pointer absolute "
+            className="flex items-center justify-center rounded-full font-semibold bg-transparent
+                    text-dark py-1.5 px-3 cursor-pointer absolute dark:text-light dark:bg-transparent text-sm
+                    md:bg-dark md:text-light md:shadow-dark md:py-2 md:px-4 md:text-base lg:bg-dark
+                    lg:text-light lg:py-3 lg:px-6 lg:text-lg lg:dark:bg-light lg:dark:text-dark"            
             whileHover={{ scale: 1.05 }}
             initial={{ x: 0, y: 0 }}
-            whileInView={{ x: x, y: y }}
-            transition={{ duration: 1.5 }}
+            whileInView={{ x: x, y: y, transition: { duration: 1.5 } }}
             viewport={{ once: true }}
         >
             {name}
@@ -20,10 +21,11 @@ const Skill = ({ name, x, y }) => {
 const Skills = () => {
     return (
         <>
-            <h2 className="font-bold text-8xl mt-64 w-full text-center">Skills</h2>
-            <div className="w-full h-screen relative flex items-center justify-center rounded-full bg-circular-light">
+            <h2 className="font-bold text-6xl mt-32 w-full text-center lg:text-8xl lg:mt-64">Skills</h2>
+            <div className="w-full h-[50vh] relative flex items-center justify-center rounded-full
+            bg-circular sm:h-[60vh] md:h-[70vh] lg:h-[100vh]">
                 <motion.div
-                    className="flex items-center justify-center rounded-full font-semibold bg-dark text-light p-8 shadow-dark"
+                    className="flex items-center justify-center rounded-full font-semibold bg-dark text-light p-2 shadow-dark dark:text-dark dark:bg-light md:p-4 lg:p-6"
                     whileHover={{ scale: 1.05 }}
                 >
                     Web
