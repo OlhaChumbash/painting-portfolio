@@ -25,26 +25,36 @@ const MovingImg = ({ title, img, link }) => {
         y.set(-10);
     }
 
-    function handleMouseLeave(event) {
+    function handleMouseLeave() {
         imgRef.current.style.display = "none";
         x.set(0);
         y.set(0);
     }
 
     return (
-        <Link href={link} target="_blank"
+        <Link
+            href={link}
+            target="_blank"
             onMouseMove={handleMouse}
             onMouseLeave={handleMouseLeave}
         >
-            <h2 className="capitalize text-xl font-semibold hover:underline">{title}</h2>
-            <FramerImage style={{ x: x, y: y }}
+            <h2 className="capitalize text-xl font-semibold hover:underline">
+                {title}
+            </h2>
+
+            <FramerImage
+                style={{ x, y }}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}
-                ref={imgRef} src={img} alt={title} className="z-10 w-96 h-auto hidden absolute rounded-lg" />
+                ref={imgRef}
+                src={img}
+                alt={title}
+                className="z-10 hidden absolute w-96 h-auto rounded-lg"
+            />
         </Link>
-    )
-}
+    );
+};
 
 const Article = ({ img, title, date, link }) => {
     return (
@@ -52,11 +62,12 @@ const Article = ({ img, title, date, link }) => {
             initial={{ y: 200 }}
             whileInView={{ y: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
             viewport={{ once: true }}
-            className="relative w-full p-4 py-6 my-4 rounded-xl flex items-center
-        justify-between bg-light text-dark first:mt-0 border border-solid border-dark
-        border-r-4 border-b-4  dark:border-light dark:bg-dark dark:text-light">
+            className="relative w-full p-4 py-6 my-4 rounded-xl flex flex-col items-center
+                justify-between bg-light text-dark first:mt-0 border border-solid border-dark
+                border-r-4 border-b-4 dark:border-light dark:bg-dark dark:text-light
+                sm:flex-row">
             <MovingImg title={title} img={img} link={link} />
-            <span className='text-primary dark:text-primary-dark font-semibold pl-4'>{date}</span>
+            <span className='text-primary self-start text-sm dark:text-primary-dark font-semibold md:self-auto md:pl-4 md:text-base'>{date}</span>
         </motion.li >
     )
 }
@@ -75,10 +86,13 @@ const FeaturedArticles = ({ img, title, time, summary, link }) => {
                     className="w-full h-auto"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
+                    priority
+                    sizes="(max-width: 768px) 100vw,
+                    (max-width: 1200px) 50vw, 50vw"
                 />
             </Link>
             <Link href={link} target="_blank">
-                <h2 className="capitalize text-2xl font-bold my-2 mt-4 hover:underline">{title}</h2>
+                <h2 className="capitalize text-lg font-bold my-2 mt-4 hover:underline xs:text-2xl">{title}</h2>
                 <p className="text-sm mb-2 ">{summary}</p>
                 <span className="text-primary font-semibold dark:text-primary-dark">{time}</span>
             </Link>
@@ -96,8 +110,8 @@ const articles = () => {
 
             <main className="flex w-full mb-16 flex-col items-center justify-center overflow-hidden dark:text-light">
                 <Layout className="pt-16">
-                    <AnimatedText text="Words Can Change The World!" className="mb-16" />
-                    <ul className="grid grid-cols-2 gap-16">
+                    <AnimatedText text="Words Can Change The World!" className="mb-8 !text-4xl sm:mb-16 sm:!text-6xl lg:!text-7xl" />
+                    <ul className="grid grid-cols-1 gap-y-16 md:grid-cols-2 md:gap-8">
                         <FeaturedArticles
                             img={article1}
                             title="Build A Custom Pagination Component In Reactjs From Scratch"

@@ -48,9 +48,21 @@ const about = () => {
             </Head>
             <main className="flex w-full flex-col items-center justify-center dark:text-light">
                 <Layout className="pt-16">
-                    <AnimatedText text="Passion Fuels Purpose!" className="mb-16" />
-                    <div className="grid w-full grid-cols-8 gap-16">
-                        <div className="col-span-3 flex flex-col items-start justify-center">
+                    <AnimatedText text="Passion Fuels Purpose!" className="mb-8 !text-4xl sm:mb-16 sm:!text-6xl lg:!text-7xl" />
+                    <div className="grid w-full grid-cols-8 gap-8 sm:gap-16">
+                        <div className="col-span-8 relative h-max rounded-2xl border-2 border-solid md:order-2 md:col-span-4  border-dark
+                         bg-light p-8 dark:bg-dark dark:border-light xl:col-span-3 ">
+                            <div className="absolute top-0 -right-3 -z-10 h-[103%] w-[102%] rounded-[2rem] bg-dark dark:bg-light"></div>
+
+                            <Image
+                                src={profilePic}
+                                alt="Dmytro"
+                                className="h-auto w-full rounded-2xl"
+                                priority
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                        </div>
+                        <div className="col-span-8 flex flex-col items-start justify-start md:order-1 md:col-span-4 xl:col-span-3">
                             <h2 className="mb-4 text-lg font-bold uppercase text-dark/75 dark:text-light/75">Biography</h2>
                             <p className="font-medium ">
                                 Hi, I'm CodeBucks, a web developer and UI/UX designer with a passion for creating beautiful, functional,
@@ -65,36 +77,28 @@ const about = () => {
                                 every project I work on. I look forward to the opportunity to bring my skills and passion to your next project.
                             </p>
                         </div>
-                        <div className="relative col-span-3 h-max rounded-2xl border-2 border-solid border-dark bg-light p-8 dark:bg-dark dark:border-light">
-                            <div className="absolute top-0 -right-3 -z-10 h-[103%] w-[102%] rounded-[2rem] bg-dark dark:bg-light"></div>
 
-                            <Image
-                                src={profilePic}
-                                alt="Dmytro"
-                                className="h-auto w-full rounded-2xl"
-                            />
-                        </div>
-
-                        <div className="col-span-2 flex flex-col items-end justify-between">
-                            <div className="flex flex-col items-end justify-center">
-                                <span className='inline-block text-7xl font-bold'>
+                        <div className="col-span-8 flex flex-row items-center justify-between  order-3 xl:col-span-2 xl:flex-col xl:items-end">
+                            <div className="flex flex-col items-center justify-center xl:items-end">
+                                <span className="inline-block text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl">
                                     <AnimatedNumber value={50} />+
                                 </span>
-                                <h2 className='text-xl font-medium capitalize text-dark/75 dark:text-light/75'>satisfied clients</h2>
+                                <h2 className='text-center text-sm font-medium capitalize text-dark/75 dark:text-light/75 sm:text-base lg:text-xl'>satisfied clients</h2>
                             </div>
 
 
-                            <div className="flex flex-col items-end justify-center">
-                                <span className='inline-block text-7xl font-bold'>
+                            <div className="flex flex-col items-center justify-center xl:items-end">
+                                <span className="inline-block text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl">
                                     <AnimatedNumber value={40} />+
                                 </span>
-                                <h2 className='text-xl font-medium capitalize text-dark/75 dark:text-light/75'>satisfied clients</h2>
+                                <h2 className='text-center text-sm font-medium capitalize text-dark/75 dark:text-light/75 sm:text-base lg:text-xl'>satisfied clients</h2>
                             </div>
 
-                            <div className="flex flex-col items-end justify-center">
-                                <span className='inline-block text-7xl font-bold'>
-                                    <AnimatedNumber value={4} />+</span>
-                                <h2 className='text-xl font-medium capitalize text-dark/75 dark:text-light/75'>years of experience</h2>
+                            <div className="flex flex-col items-center justify-center xl:items-end">
+                                <span className="inline-block text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl">
+                                    <AnimatedNumber value={4} />+
+                                </span>
+                                <h2 className='text-center text-sm font-medium capitalize text-dark/75 dark:text-light/75 sm:text-base lg:text-xl'>years of experience</h2>
                             </div>
                         </div>
                     </div>
