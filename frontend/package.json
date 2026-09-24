@@ -9,8 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "eslint": "8.36.0",
-    "eslint-config-next": "13.2.4",
+    "@ark-ui/react": "^5.39.2",
     "framer-motion": "^10.6.0",
     "next": "15.5.15",
     "postcss": "^8.5.22",
@@ -19,6 +18,8 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.3"
+    "@tailwindcss/postcss": "^4.3.3",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^15.5.15"
   }
 }
