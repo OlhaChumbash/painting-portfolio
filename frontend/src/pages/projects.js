@@ -8,6 +8,7 @@ import { motion } from 'framer-motion'
 import { GithubIcon } from '@/components/Icons'
 import project1 from '../../public/images/projects/crypto-screener-cover-image.jpg'
 import TransitionEffect from '@/components/TransitionEffect'
+import Carousel from '@/components/Carousel'
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 const FramerImage = motion(Image)
@@ -162,33 +163,11 @@ const ProjectsPage = () => {
                     <AnimatedText text="Imagination Trumps Knowledge!" className="mb-8 !text-4xl sm:mb-16 sm:!text-6xl lg:!text-7xl" />
 
                     {loading && paintings.length === 0 && (
-                        <p className="mb-8 text-sm text-dark/70 dark:text-light/70">Loading paintings from the backend...</p>
-                    )}
+                        <p className="mb-8 text-sm text-dark/70 dark:text-light/70">Loading paintings from the backend...</p> 
+                                         )}
 
-                    <div className="grid grid-cols-12 gap-y-16 md:gap-y-24 lg:gap-x-8 xl:gap-x-16">
-                        <div className="col-span-12">
-                            <FeaturedProjects
-                                type={displayProjects[0].type}
-                                title={displayProjects[0].title}
-                                summary={displayProjects[0].summary}
-                                img={displayProjects[0].img}
-                                link={displayProjects[0].link}
-                                github={displayProjects[0].github}
-                            />
-                        </div>
-
-                        {displayProjects.slice(1).map((project) => (
-                            <div key={project.id} className="col-span-12 md:col-span-6">
-                                <Project
-                                    type={project.type}
-                                    title={project.title}
-                                    img={project.img}
-                                    link={project.link}
-                                    github={project.github}
-                                />
-                            </div>
-                        ))}
-                    </div>
+                                     
+                    <Carousel/>
                 </Layout>
             </main>
         </>
