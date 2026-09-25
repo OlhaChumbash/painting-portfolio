@@ -2,8 +2,8 @@
 
 import { Carousel as ArkCarousel } from "@ark-ui/react/carousel";
 
-const Carousel = ({ projects = [] }) => {
-  if (!projects.length) {
+const Carousel = ({ paintings = [] }) => {
+  if (!paintings.length) {
     return (
       <div className="w-full max-w-5xl mx-auto rounded-lg border border-dark/20 p-8 text-center dark:border-light/20">
         <p className="text-dark dark:text-light">
@@ -16,9 +16,9 @@ const Carousel = ({ projects = [] }) => {
   return (
     <ArkCarousel.Root
       defaultPage={0}
-      slideCount={projects.length}
+      slideCount={paintings.length}
       allowMouseDrag={true}
-      loop={projects.length > 1}
+      loop={paintings.length > 1}
       className="w-full max-w-5xl mx-auto"
     >
       {/* MAIN IMAGE */}
@@ -32,7 +32,7 @@ const Carousel = ({ projects = [] }) => {
           touch-pan-y
         "
       >
-        {projects.map((project, index) => (
+        {paintings.map((project, index) => (
           <ArkCarousel.Item
             key={project.id ?? index}
             index={index}
@@ -106,7 +106,7 @@ const Carousel = ({ projects = [] }) => {
 
         {/* THUMBNAILS */}
         <div className="flex gap-2 overflow-x-auto flex-1 px-2 py-1">
-          {projects.map((project, index) => (
+          {paintings.map((project, index) => (
             <ArkCarousel.Indicator
               key={project.id ?? index}
               index={index}
