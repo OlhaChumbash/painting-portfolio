@@ -5,6 +5,7 @@ import { useRouter } from "next/router"
 import { TwitterIcon, GithubIcon, LinkedInIcon, PinterestIcon, DribbbleIcon, MoonIcon, SunIcon } from "@/components/Icons"
 import { motion } from "framer-motion"
 import useThemeSwitcher from "@/components/hooks/useThemeSwitcher"
+import LanguageSwitcher from "@/components/LanguageContext"
 
 const CustomLink = ({ href, title, className = "" }) => {
   const router = useRouter()
@@ -59,6 +60,7 @@ const NavBar = () => {
         <button type="button" onClick={() => setMode(mode === "light" ? "dark" : "light")} className={`ml-3 flex items-center justify-center rounded-full p-1 ${mode === "light" ? "bg-dark text-light" : "bg-light text-dark"}`}>
           {mode === "dark" ? <SunIcon className="fill-dark" /> : <MoonIcon className="fill-dark" />}
         </button>
+        <LanguageSwitcher  />
       </nav>
 
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -95,6 +97,7 @@ const NavBar = () => {
             <button type="button" onClick={() => setMode(mode === "light" ? "dark" : "light")} className={`ml-3 flex items-center justify-center rounded-full p-1 ${mode === "light" ? "bg-dark text-light" : "bg-light text-dark"}`}>
               {mode === "dark" ? <SunIcon className="fill-dark" /> : <MoonIcon className="fill-dark" />}
             </button>
+              <LanguageSwitcher  />
           </nav>
         </motion.div>
       ) : null}

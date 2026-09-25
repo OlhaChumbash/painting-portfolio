@@ -10,12 +10,19 @@ import { LinkArrow } from "@/components/Icons"
 import HireMe from '@/components/HireMe'
 import TransitionEffect from '@/components/TransitionEffect'
 import { useEffect, useState } from 'react'
+import { useLanguage } from "@/components/LanguageContext"
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [content, setContent] = useState(null)
   const [loading, setLoading] = useState(true)
+
+  const { language } = useLanguage()
+
+  const getContent = (field) => {
+    return content?.[`${field}_${language}`] || ""
+  }
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/pages/home/`)
@@ -45,13 +52,13 @@ export default function Home() {
     <>
       <Head>
         <title>
-          {content?.hero_name_english || 'Dmytro'}
+          {getContent("hero_name") || 'Dmytro'}
         </title>
 
         <meta
           name="description"
           content={
-            content?.hero_description_english ||
+            getContent("hero_description") ||
             'Dmytro - Ukrainian painter.'
           }
         />
@@ -69,7 +76,7 @@ export default function Home() {
             <div className="w-full hidden md:block md:p-8 md:pt-0 lg:p-0 lg:w-1/2">
               <Image
                 src={profilePic}
-                alt={content?.hero_name_english || 'Dmytro'}
+                alt={getContent("hero_name") || 'Dmytro'}
                 className="w-full h-auto"
                 priority
                 sizes="(max-width: 768px) 100vw,
@@ -82,14 +89,14 @@ export default function Home() {
 
               <AnimatedText
                 text={
-                  content?.hero_title_english ||
+                  getContent("hero_title") ||
                   'Turning Vision Into Art.'
                 }
                 className="!text-4xl !text-center md:!text-5xl lg:!text-6xl lg:!text-left"
               />
 
               <p className="my-4 text-center md:text-left text-xs font-medium md:text-sm lg:text-base">
-                {content?.hero_description_english}
+                {getContent("hero_description")}
               </p>
 
               <div className="flex items-center self-center m-2 lg:self-start">
@@ -100,7 +107,7 @@ export default function Home() {
                   className="flex items-center bg-dark text-light p-2 px-4 rounded-lg text-base font-semibold hover:bg-light hover:text-dark border-2 border-solid border-transparent hover:border-dark dark:text-dark dark:bg-light hover:dark:bg-dark hover:dark:text-light hover:dark:border-light lg:p-2.5 lg:px-6 lg:text-lg"
                   download={true}
                 >
-                  {content?.resume_button_english || 'View Resume'}
+                  {getContent("resume_button") || 'View Resume'}
 
                   <LinkArrow className="w-6 ml-1" />
                 </a>
@@ -110,7 +117,7 @@ export default function Home() {
                   target="_blank"
                   className="ml-4 text-base font-medium capitalize text-dark underline dark:text-light lg:text-lg"
                 >
-                  {content?.contact_button_english || 'Contact'}
+                  {getContent("contact_button") || 'Contact'}
                 </a>
 
               </div>
