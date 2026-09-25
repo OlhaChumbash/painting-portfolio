@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { GithubIcon } from '@/components/Icons'
-import project1 from '../../public/images/projects/crypto-screener-cover-image.jpg'
+import project1 from '../../public/images/paintings/crypto-screener-cover-image.jpg'
 import TransitionEffect from '@/components/TransitionEffect'
 import Carousel from '@/components/Carousel'
 
@@ -36,7 +36,7 @@ const getImageUrl = (image) => {
     }${image}`
 }
 
-const FeaturedProjects = ({
+const FeaturedPaintings = ({
     type,
     title,
     summary,
@@ -163,7 +163,7 @@ const Project = ({
     )
 }
 
-const ProjectsPage = () => {
+const PaintingsPage = () => {
     const [paintings, setPaintings] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -197,7 +197,7 @@ const ProjectsPage = () => {
         fetchPaintings()
     }, [])
 
-    const displayProjects = paintings.map((item) => ({
+    const displayPaintings = paintings.map((item) => ({
         id: item.id,
         type: 'Painting Collection',
         title: item.title || 'Untitled Painting',
@@ -212,11 +212,11 @@ const ProjectsPage = () => {
     return (
         <>
             <Head>
-                <title>Dmytro | Projects Page</title>
+                <title>Dmytro | Paintings Page</title>
 
                 <meta
                     name="description"
-                    content="Dmytro Shynienkov Projects Page"
+                    content="Dmytro Shynienkov Paintings Page"
                 />
             </Head>
 
@@ -238,7 +238,7 @@ const ProjectsPage = () => {
 
                     {!loading && paintings.length > 0 && (
                         <Carousel
-                            projects={displayProjects}
+                            paintings={displayPaintings}
                         />
                     )}
 
@@ -260,5 +260,5 @@ const ProjectsPage = () => {
     )
 }
 
-export default ProjectsPage
+export default PaintingsPage
 
