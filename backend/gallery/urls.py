@@ -4,6 +4,7 @@ from .views import (
     PaintingListAPIView,
     PaintingDetailAPIView,
     HomePageContentAPIView,
+    AboutPageContentAPIView,
 )
 
 
@@ -24,5 +25,11 @@ urlpatterns = [
         "pages/home/",
         HomePageContentAPIView.as_view(),
         name="home-page-content",
+    ),
+
+    path(
+        "pages/about/",
+        AboutPageContentAPIView.as_view(),
+        name="about-page-content",
     ),
 ]
