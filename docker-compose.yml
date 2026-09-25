@@ -6,7 +6,7 @@ services:
 
     container_name: painting_backend
 
-    command: python manage.py runserver 0.0.0.0:8000
+    command: sh /app/entrypoint.sh
 
     volumes:
       - ./backend:/app
@@ -20,6 +20,9 @@ services:
       POSTGRES_PASSWORD: painting_password
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
+      DJANGO_SUPERUSER_USERNAME: admin
+      DJANGO_SUPERUSER_EMAIL: admin@example.com
+      DJANGO_SUPERUSER_PASSWORD: admin123
 
     depends_on:
       - postgres
