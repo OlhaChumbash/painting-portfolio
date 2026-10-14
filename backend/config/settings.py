@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-37oyyow4$o6)8fktjb8c95nhcm44^&ra8a-a^9gzja!0is7g59'
+# На Render секретний ключ буде братися з перемінних середовища безпечно
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-37oyyow4$o6)8fktjb8c95nhcm44^&ra8a-a^9gzja!0is7g59')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# На Render DEBUG буде автоматично False, а локально True
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+# Дозволяємо доступ з Render та локально
+ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -45,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Додано для коректної роботи адмінки та стилів на Render
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -75,17 +81,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+# Універсальне підключення: якщо є DATABASE_URL (на Render), бере його. 
+# Якщо немає — використовує локальний Docker PostgreSQL.
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "painting_db",
-        "USER": "painting_user",
-        "PASSWORD": "painting_password",
-        "HOST": "postgres",
-        "PORT": "5432",
-    }
+    'default': dj_database_url.config(
+        default=f"postgres://{os.environ.get('POSTGRES_USER', 'painting_user')}:{os.environ.get('POSTGRES_PASSWORD', 'painting_password')}@{os.environ.get('POSTGRES_HOST', 'postgres')}:{os.environ.get('POSTGRES_PORT', '5432')}/{os.environ.get('POSTGRES_DB', 'painting_db')}",
+        conn_max_age=600
+    )
 }
 
 
@@ -124,6 +126,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
