@@ -86,10 +86,9 @@ DATABASES = {
             'postgres://painting_user:painting_password@postgres:5432/painting_db'
         ),
         conn_max_age=600,
-        ssl_require=True  # Обов'язково для хмарних баз Neon
+        ssl_require=os.environ.get('DATABASE_URL') is not None and 'onrender.com' in os.environ.get('DATABASE_URL', '')
     )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
