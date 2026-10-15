@@ -26,5 +26,5 @@ else:
     print(f"Superuser '{username}' already exists.")
 PYTHON
 
-echo "Starting Django..."
-exec python manage.py runserver 0.0.0.0:8000
+echo "Starting Gunicorn..."
+exec gunicorn config.wsgi:application --bind 0.0.0.0:10000
