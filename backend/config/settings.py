@@ -22,11 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# На Render секретний ключ буде братися з перемінних середовища безпечно
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-37oyyow4$o6)8fktjb8c95nhcm44^&ra8a-a^9gzja!0is7g59')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# На Render DEBUG буде автоматично False, а локально True
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 # Дозволяємо доступ з Render та локально
@@ -50,7 +48,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # Додано для коректної роботи адмінки та стилів на Render
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Для обробки статики та стилів адмінки
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -80,12 +78,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
-# Універсальне підключення: якщо є DATABASE_URL (на Render), бере його. 
-# Якщо немає — використовує локальний Docker PostgreSQL.
-import dj_database_url
-
-# Database configuration
+# Database configuration (Neon + Docker fallback)
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get(
@@ -93,7 +86,7 @@ DATABASES = {
             'postgres://painting_user:painting_password@postgres:5432/painting_db'
         ),
         conn_max_age=600,
-        ssl_require=True  # Обов'язково True для хмарних баз на зразок Neon
+        ssl_require=True  # Обов'язково для хмарних баз Neon
     )
 }
 
@@ -130,19 +123,25 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
 MEDIA_URL = "/media/"
-
 MEDIA_ROOT = BASE_DIR / "media"
+
+
+# --- ВИПРАВЛЕННЯ ДЛЯ ПОМИЛКИ 403 CSRF НА RENDER ---
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.onrender.com",
+]
+
+# Безпека куки для HTTPS-з'єднання на Render
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
