@@ -85,6 +85,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Якщо немає — використовує локальний Docker PostgreSQL.
 import dj_database_url
 
+# Database configuration
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get(
@@ -92,7 +93,7 @@ DATABASES = {
             'postgres://painting_user:painting_password@postgres:5432/painting_db'
         ),
         conn_max_age=600,
-        ssl_require=False # Локально SSL не потрібен
+        ssl_require=True  # Обов'язково True для хмарних баз на зразок Neon
     )
 }
 
