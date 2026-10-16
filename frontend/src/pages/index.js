@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import SEOHead from '@/components/SEOHead'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
@@ -50,22 +51,10 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>
-          {getContent("hero_name") || 'Dmytro'}
-        </title>
-
-        <meta
-          name="description"
-          content={
-            getContent("hero_description") ||
-            'Dmytro - Ukrainian painter.'
-          }
-        />
-
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+      <SEOHead
+        title={getContent("hero_name")}
+        description={getContent("hero_description")}
+      />
       <TransitionEffect />
 
       <main className="flex items-center text-dark w-full min-h-screen dark:text-light">
@@ -99,7 +88,7 @@ export default function Home() {
                 {getContent("hero_description")}
               </p>
 
-              <div className="flex items-center self-center m-2 lg:self-start">
+              {/* <div className="flex items-center self-center m-2 lg:self-start">
 
                 <a
                   href="/dummy.pdf"
@@ -120,13 +109,13 @@ export default function Home() {
                   {getContent("contact_button") || 'Contact'}
                 </a>
 
-              </div>
+              </div> */}
             </div>
           </div>
 
         </Layout>
 
-        <HireMe />
+        {/* <HireMe /> */}
 
         <div className="absolute right-8 bottom-8 inline-block w-24 md:hidden lg:inline-block">
           <Image
