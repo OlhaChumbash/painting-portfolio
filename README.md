@@ -10,3 +10,9 @@ docker compose up --build
 cd /workspaces/painting-portfolio/frontend
 npm install
 npm run dev
+
+
+https://painting-portfolio.onrender.com/admin/gallery/pagecontent/
+https://console.neon.tech/app/org-jolly-leaf-39455126/projects
+https://vercel.com/olhachumbashs-projects/painting-portfolio 
+(https://painting-portfolio-three.vercel.app/)
