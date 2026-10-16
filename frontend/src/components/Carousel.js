@@ -323,19 +323,6 @@ const Carousel = ({ paintings = [] }) => {
               </button>
             )}
           </div>
-
-          {/* DESCRIPTION */}
-          <div className="mt-3 max-h-28 w-full max-w-4xl shrink-0 overflow-y-auto text-center text-white sm:mt-4">
-            {painting.summary && (
-              <p className="text-sm leading-relaxed text-white/80 sm:text-base">
-                {painting.summary}
-              </p>
-            )}
-          </div>
-
-          <p className="mt-2 shrink-0 text-xs text-white/50 sm:text-sm">
-            Press Esc to close · Use ← → to navigate
-          </p>
         </div>
       )}
     </>
