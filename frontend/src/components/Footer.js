@@ -21,14 +21,6 @@ const Footer = () => {
                     </Link>
                 </div>
 
-                <Link 
-                    href="https://olhachumbash.github.io/portfolio/" 
-                    className="underline underline-offset-2" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                >
-                    Say Hello
-                </Link>
             </Layout>
         </footer>
     )
