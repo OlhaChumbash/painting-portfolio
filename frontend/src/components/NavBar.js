@@ -1,6 +1,6 @@
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "@/components/Logo";
 import { useRouter } from "next/router";
 import {
@@ -94,6 +94,17 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language } = useLanguage();
 
+  useEffect(() => {
+  if (!isOpen) return;
+
+  const previousOverflow = document.body.style.overflow;
+  document.body.style.overflow = "hidden";
+
+  return () => {
+    document.body.style.overflow = previousOverflow;
+  };
+}, [isOpen]);
+
   // Fall back to English if an unexpected language value is present.
   const text = translations[language] || translations.english;
 
@@ -112,22 +123,35 @@ const NavBar = () => {
         aria-expanded={isOpen}
         className="flex flex-col justify-center items-center lg:hidden z-50"
         onClick={handleClick}
-      >
-        <span
-          className={`bg-dark dark:bg-light transition-all duration-300 ease-out block w-6 h-0.5 rounded-sm ${
-            isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"
-          }`}
-        />
-        <span
-          className={`bg-dark dark:bg-light transition-all duration-300 ease-out block w-6 h-0.5 rounded-sm my-0.5 ${
-            isOpen ? "opacity-0" : "opacity-100"
-          }`}
-        />
-        <span
-          className={`bg-dark dark:bg-light transition-all duration-300 ease-out block w-6 h-0.5 rounded-sm ${
-            isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
-          }`}
-        />
+      >     
+
+      <span
+        className={`block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${
+          isOpen
+            ? `translate-y-1 rotate-45 ${
+                mode === "light" ? "bg-light" : "bg-dark"
+              }`
+            : " -translate-y-0.5 bg-dark dark:bg-light"
+        }`}
+      />
+
+      <span
+        className={`my-0.5 block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${
+          isOpen
+            ? "opacity-0"
+            : "opacity-100 bg-dark dark:bg-light"
+        }`}
+      />
+
+      <span
+        className={`block h-0.5 w-6 rounded-sm transition-all duration-300 ease-out ${
+          isOpen
+            ? `-translate-y-1 -rotate-45 ${
+                mode === "light" ? "bg-light" : "bg-dark"
+              }`
+            : "translate-y-0.5 bg-dark dark:bg-light"
+        }`}
+      />
       </button>
 
       {/* Desktop navigation */}
@@ -197,8 +221,7 @@ const NavBar = () => {
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="min-w-[70vw] flex flex-col w-full z-30 justify-between items-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-dark/90 dark:bg-light/75 rounded-lg backdrop-blur-md py-32 lg:hidden"
-        >
+          className="fixed inset-0 z-40 flex h-[100dvh] w-full flex-col items-center justify-center overflow-y-auto overscroll-contain bg-dark/90 py-10 backdrop-blur-md dark:bg-light/90 lg:hidden"        >
           <nav className="flex items-center flex-col justify-center">
             <CustomMobileLink
               href="/"
@@ -225,7 +248,11 @@ const NavBar = () => {
               aria-label="WhatsApp"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
-              className="w-6 mx-3 sm:mx-1"
+              className={`w-6 mx-3 sm:mx-1 rounded-full ${
+                mode === "light"
+                  ? "bg-dark text-light"
+                  : "text-dark"
+              }`}
             >
               <WhatsAppIcon />
             </motion.a>
@@ -237,7 +264,11 @@ const NavBar = () => {
               aria-label="Telegram"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
-              className="w-6 mx-3 sm:mx-1"
+              className={`w-6 mx-3 sm:mx-1 rounded-full ${
+                mode === "light"
+                  ? "bg-dark text-light"
+                  : "text-dark"
+              }`}
             >
               <TelegramIcon />
             </motion.a>
