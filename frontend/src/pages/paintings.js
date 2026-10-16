@@ -44,41 +44,69 @@ const PaintingsPage = () => {
 
     const { language } = useLanguage()
 
-    useEffect(() => {
-        const fetchPaintings = async () => {
-            try {
-                const response = await fetch(
-                    `${API_BASE_URL}/api/paintings/`
-                )
+    // useEffect(() => {
+    //     const fetchPaintings = async () => {
+    //         try {
+    //             const response = await fetch(
+    //                 `${API_BASE_URL}/api/paintings/`
+    //             )
 
-                if (!response.ok) {
-                    throw new Error(
-                        `Backend returned ${response.status}`
-                    )
-                }
+    //             if (!response.ok) {
+    //                 throw new Error(
+    //                     `Backend returned ${response.status}`
+    //                 )
+    //             }
 
-                const data = await response.json()
+    //             const data = await response.json()
 
-                const paintingList = Array.isArray(data)
-                    ? data
-                    : data.results || []
+    //             const paintingList = Array.isArray(data)
+    //                 ? data
+    //                 : data.results || []
 
-                setPaintings(paintingList)
-            } catch (error) {
-                console.error(
-                    'Error loading paintings:',
-                    error
-                )
+    //             setPaintings(paintingList)
+    //         } catch (error) {
+    //             console.error(
+    //                 'Error loading paintings:',
+    //                 error
+    //             )
 
-                setPaintings([])
-            } finally {
-                setLoading(false)
+    //             setPaintings([])
+    //         } finally {
+    //             setLoading(false)
+    //         }
+    //     }
+
+    //     fetchPaintings()
+    // }, [])
+useEffect(() => {
+    const fetchPaintings = async () => {
+        try {
+            console.log("Fetching from:", `${API_BASE_URL}/api/paintings/`)
+            const response = await fetch(`${API_BASE_URL}/api/paintings/`)
+
+            if (!response.ok) {
+                throw new Error(`Backend returned ${response.status}`)
             }
+
+            const data = await response.json()
+            console.log("Raw API Data:", data) // <--- Подивіться на це в консолі браузера (F12)
+
+            const paintingList = Array.isArray(data)
+                ? data
+                : data.results || data.data || []
+
+            console.log("Processed paintingList:", paintingList)
+            setPaintings(paintingList)
+        } catch (error) {
+            console.error('Error loading paintings:', error)
+            setPaintings([])
+        } finally {
+            setLoading(false)
         }
+    }
 
-        fetchPaintings()
-    }, [])
-
+    fetchPaintings()
+}, [])
     const displayPaintings = paintings.map((item) => ({
         id: item.id,
 
